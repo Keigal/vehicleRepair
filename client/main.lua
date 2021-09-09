@@ -21,7 +21,6 @@ AddEventHandler('vehicleRepair:fv', function()
     then
         -- Event only needs vehicle coords if there is a fire
         local coords = GetEntityCoords(vehicle)
-        print(coords)
         StopFireInRange(coords, 20)
         StopEntityFire(vehicle)
     end
