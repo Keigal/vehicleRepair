@@ -18,7 +18,6 @@ AddEventHandler('repairtest:fixVehicle', function()
 
     -- Sets the cosmetics of the vehicle to look repaired
     SetVehicleDeformationFixed(vehicle)
-    Engine
 
 end)
 
