@@ -1,5 +1,10 @@
 -- Registered this event client-side as the natives being used are all client side.
 
+-- Creates thread that adds command to suggested commands
+Citizen.CreateThread(function()
+    TriggerEvent('chat:addSuggestion', '/fixVehicle', 'Fully repairs a vehicle.')
+end)
+
 -- Creating event to fix a vehicle
 RegisterNetEvent('vehicleRepair:fixVehicle')
 AddEventHandler('vehicleRepair:fixVehicle', function()
