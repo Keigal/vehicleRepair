@@ -18,12 +18,13 @@ AddEventHandler('vehicleRepair:fv', function()
 
     -- Checks if vehicle is on fire, extinguishes if it is.
     if IsEntityOnFire(vehicle)
-
+    then
         -- Event only needs vehicle coords if there is a fire
         local coords = GetEntityCoords(vehicle)
         print(coords)
         StopFireInRange(coords, 20)
         StopEntityFire(vehicle)
+    end
 
     -- Ensures vehicle is driveable
     SetVehicleUndriveable(vehicle, false)
