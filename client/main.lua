@@ -1,5 +1,5 @@
 
--- Registering the command /fixVehicle
+-- Creating event to fix a vehicle
 RegisterNetEvent('repairtest:fixVehicle')
 AddEventHandler('repairtest:fixVehicle', function()
 
@@ -21,3 +21,10 @@ AddEventHandler('repairtest:fixVehicle', function()
     Engine
 
 end)
+
+-- Registering command to fix a vehicle
+RegisterCommand(fixVehicle, function()
+    
+    TriggerEvent('repairtest:fixVehicle')
+    
+end, false)
