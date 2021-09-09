@@ -2,12 +2,12 @@
 
 -- Creates thread that adds command to suggested commands
 Citizen.CreateThread(function()
-    TriggerEvent('chat:addSuggestion', '/fixVehicle', 'Fully repairs a vehicle.')
+    TriggerEvent('chat:addSuggestion', '/fv', 'Fully repairs a vehicle.')
 end)
 
 -- Creating event to fix a vehicle
-RegisterNetEvent('vehicleRepair:fixVehicle')
-AddEventHandler('vehicleRepair:fixVehicle', function()
+RegisterNetEvent('vehicleRepair:fv')
+AddEventHandler('vehicleRepair:fv', function()
 
     -- Selects playerPed that typed the command
     local playerPed = GetPlayerPed(-1)

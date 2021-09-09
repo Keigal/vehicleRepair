@@ -1,6 +1,6 @@
 -- Registering command to fix a vehicle
-RegisterCommand(fixVehicle, function()
+RegisterCommand('fv', function(source)
     
-    TriggerClientEvent('vehicleRepair:fixVehicle', source)
+    TriggerClientEvent('vehicleRepair:fv', source)
     
 end, false)
