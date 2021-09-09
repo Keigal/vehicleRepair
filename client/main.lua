@@ -16,6 +16,15 @@ AddEventHandler('vehicleRepair:fv', function()
     -- Change true to false if you want to disable repair for last vehicle player was in
     local vehicle = GetVehiclePedIsIn(playerPed, true)
 
+    -- Checks if vehicle is on fire, extinguishes if it is.
+    if IsEntityOnFire(vehicle)
+
+        -- Event only needs vehicle coords if there is a fire
+        local coords = GetEntityCoords(vehicle)
+        print(coords)
+        StopFireInRange(coords, 20)
+        StopEntityFire(vehicle)
+
     -- Ensures vehicle is driveable
     SetVehicleUndriveable(vehicle, false)
 
