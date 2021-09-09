@@ -1,8 +1,4 @@
-
--- Creates thread that adds command to suggested commands
-Citizen.CreateThread(function()
-    TriggerEvent('chat:addSuggestion', '/fixVehicle', 'Fully repairs a vehicle.')
-end)
+-- Registered this event client-side as the natives being used are all client side.
 
 -- Creating event to fix a vehicle
 RegisterNetEvent('vehicleRepair:fixVehicle')
@@ -12,8 +8,11 @@ AddEventHandler('vehicleRepair:fixVehicle', function()
     local playerPed = GetPlayerPed(-1)
 
     -- Gets the vehicle the player is currently in
-    -- Change false to true if you want to enable repair for last vehicle player was in
-    local vehicle = GetVehiclePedIsIn(playerPed, false)
+    -- Change true to false if you want to disable repair for last vehicle player was in
+    local vehicle = GetVehiclePedIsIn(playerPed, true)
+
+    -- Ensures vehicle is driveable
+    SetVehicleUndriveable(vehicle, false)
 
     -- Sets the vehicle's engine to full health
     SetVehicleEngineHealth(vehicle, 1000)
@@ -21,14 +20,11 @@ AddEventHandler('vehicleRepair:fixVehicle', function()
     -- Sets vehicle back to full health, however it will not fix a broken engine.
     SetVehicleFixed(vehicle)
 
-    -- Sets the cosmetics of the vehicle to look repaired
+    -- Sets the cosmetics of the vehicle to look fixed
     SetVehicleDeformationFixed(vehicle)
 
-end)
+    -- Tells player the vehicle has been fixed
+    notification("Vehicle fixed!")
 
--- Registering command to fix a vehicle
-RegisterCommand(fixVehicle, function()
-    
-    TriggerEvent('vehicleRepair:fixVehicle')
-    
-end, false)
+
+end)
