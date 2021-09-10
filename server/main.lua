@@ -29,11 +29,14 @@ AddEventHandler('vehiclerepair:sfv', function()
     -- Get player who ran command
     local playerPed = GetPlayerPed(-1)
 
+    -- Gets player's ID to pass through to cfv event
+    local id = GetPlayerServerId(playerPed)
+
     -- Get vehicle player was last in
     local vehicle = GetVehiclePedIsIn(playerPed, true)
 
     -- Runs previous fv event to fix the vehicle client-side
-    TriggerClientEvent('vehicleRepair:cfv', playerPed)
+    TriggerClientEvent('vehicleRepair:cfv', id)
 
     -- Fixes vehicle body on the server side
     SetVehicleBodyHealth(vehicle, 1000)
