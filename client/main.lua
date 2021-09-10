@@ -43,14 +43,7 @@ end)
 
 -- Slightly modified version of the fv event. The intent with this event is to take in a given vehicle and fix it.
 RegisterNetEvent('vehicleRepair:cfv')
-AddEventHandler('vehicleRepair:cfv', function(id)
-
-    -- Selects playerPed that typed the command
-    local playerPed = GetPlayerFromServerId(id)
-
-    -- Gets the vehicle the player is currently in
-    -- Change true to false if you want to disable repair for last vehicle player was in
-    local vehicle = GetVehiclePedIsIn(playerPed, true)
+AddEventHandler('vehicleRepair:cfv', function(vehicle)
 
     -- Checks if vehicle is on fire, extinguishes if it is.
     if IsEntityOnFire(vehicle)
