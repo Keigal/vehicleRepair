@@ -31,7 +31,7 @@ AddEventHandler('vehiclerepair:sfv', function()
     -- Get vehicle player was last in
     local vehicle = GetVehiclePedIsIn(playerPed, true)
 
-    -- Runs previous fv event to fix & sync the vehicle client-side
+    -- Runs cfv event to fix & sync the vehicle client-side
     TriggerClientEvent('vehicleRepair:cfv', -1, vehicle)
 
     -- Fixes vehicle body on the server side
