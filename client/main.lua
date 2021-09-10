@@ -2,7 +2,7 @@
 
 -- Creates thread that adds command to suggested commands
 Citizen.CreateThread(function()
-    TriggerEvent('chat:addSuggestion', '/fv', 'Fully repairs a vehicle.')
+    TriggerEvent('chat:addSuggestion', '/fv', 'Depreciated. Fully repairs a vehicle.')
     TriggerEvent('chat:addSuggestion', '/sfv', 'Server-sided command to fully repair vehicle.')
     TriggerEvent('chat:addSuggestion', 'globalfv', 'Runs fix vehicle event on ALL clients.')
 end)

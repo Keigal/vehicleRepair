@@ -1,4 +1,5 @@
 -- Registering command to fix a vehicle
+-- Old command. Keeping to demonstrate difference.
 RegisterCommand('fv', function(source)
     
     TriggerClientEvent('vehicleRepair:fv', source)
@@ -23,7 +24,7 @@ end, false)
 
 -- Rework of the previous fv command, but server-side.
 RegisterNetEvent('vehiclerepair:sfv')
-AddEventHandler('vehiclerepair:sfv', function()
+AddEventHandler('vehiclerepair:sfv', function(source)
 
     -- Get player who ran command
     local playerPed = GetPlayerPed(-1)
