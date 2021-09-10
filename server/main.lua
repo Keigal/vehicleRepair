@@ -24,7 +24,7 @@ end, false)
 
 -- Rework of the previous fv command, but server-side.
 RegisterNetEvent('vehiclerepair:sfv')
-AddEventHandler('vehiclerepair:sfv', function(source)
+AddEventHandler('vehiclerepair:sfv', function()
 
     -- Get player who ran command
     local playerPed = GetPlayerPed(-1)
@@ -33,7 +33,7 @@ AddEventHandler('vehiclerepair:sfv', function(source)
     local vehicle = GetVehiclePedIsIn(playerPed, true)
 
     -- Runs previous fv event to fix the vehicle client-side
-    TriggerClientEvent('vehicleRepair:fv', source)
+    TriggerClientEvent('vehicleRepair:cfv', playerPed)
 
     -- Fixes vehicle body on the server side
     SetVehicleBodyHealth(vehicle, 1000)
