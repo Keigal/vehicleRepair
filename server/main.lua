@@ -6,6 +6,8 @@ RegisterCommand('fv', function(source)
 end, false)
 
 -- Register command for fix that forces event to all clients
+-- This command SHOULD be fully functioning as requested.
+-- Not sure if this the most optimized way to fix problem.
 RegisterCommand('globalfv', function(source)
 
     TriggerClientEvent('vehicleRepair:fv', -1)
@@ -30,7 +32,7 @@ AddEventHandler('vehiclerepair:sfv', function()
     local vehicle = GetVehiclePedIsIn(playerPed, true)
 
     -- Runs previous fv event to fix the vehicle client-side
-    TriggerClientEvent('vehicleRepair:cfv', source, vehicle)
+    TriggerClientEvent('vehicleRepair:fv', source)
 
     -- Fixes vehicle body on the server side
     SetVehicleBodyHealth(vehicle, 1000)
