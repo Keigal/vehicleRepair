@@ -30,7 +30,7 @@ AddEventHandler('vehiclerepair:sfv', function()
     local playerPed = GetPlayerPed(-1)
 
     -- Gets player's ID to pass through to cfv event
-    local id = GetPlayerServerId(playerPed)
+    local id = GetPlayerIdentifier(playerPed)
 
     -- Get vehicle player was last in
     local vehicle = GetVehiclePedIsIn(playerPed, true)
