@@ -25,15 +25,32 @@ end, false)
 RegisterServerEvent('vehiclerepair:sfv')
 AddEventHandler('vehiclerepair:sfv', function(source)
 
-    -- Get player who ran command
-    local playerPed = GetPlayerPed(source)
-
     -- Debugging
     TriggerClientEvent('chat:addMessage', -1, {
         color = {255, 0, 0},
         multiline = true,
-        args = {'me', playerPed}
+        args = {'source', source}
     })
+
+    -- Get player who ran command
+    -- Returns Entity of the player ped
+    local playerPed = GetPlayerPed(source)
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        color = {255, 0, 0},
+        multiline = true,
+        args = {'playerPed', playerPed}
+    })
+
+    -- Converts entity to player id
+    local playerId = NetworkGetEntityOwner(playerPed)
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        color = {255, 0, 0},
+        multiline = true,
+        args = {'playerId', playerId}
+    })
+
 
     -- Get vehicle player was last in
     local vehicle = GetVehiclePedIsIn(playerPed, true)
@@ -42,7 +59,7 @@ AddEventHandler('vehiclerepair:sfv', function(source)
     TriggerClientEvent('chat:addMessage', -1, {
         color = {255, 0, 0},
         multiline = true,
-        args = {'me', vehicle}
+        args = {'vehicle', vehicle}
     })
 
 
