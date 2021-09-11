@@ -25,7 +25,7 @@ end, false)
 
 -- Register the keigs-repair command
 RegisterCommand('keigs-repair', function(source)
-    TriggerClientEvent('vehicleRepair:keigs-repair', source)
+    TriggerEvent('vehicleRepair:server:keigs-repair', source)
 end, false)
 
 -- Rework of the previous fv command, but server-side.
@@ -65,25 +65,18 @@ end)
 
 -- Server event called upon by keigs-repair. Syncs a repair to all clients.
 RegisterServerEvent('vehicleRepair:server:keigs-repair')
-AddEventHandler('vehicleRepair:server:keigs-repair', function(playerPed)
+AddEventHandler('vehicleRepair:server:keigs-repair', function(source)
 
+    -- Printing source player's ID
     TriggerClientEvent('chat:addMessage', -1, {
         color = {255, 0, 0},
         multiline = true,
-        args = {'server-ped', playerPed}
+        args = {'source', source}
     })
 
-    -- Gets vehicle object server side
-    local veh = GetVehiclePedIsIn(playerPed, true)
+    local playerId = source
 
-    -- Debugging. Making sure event recieved vehicle
-    TriggerClientEvent('chat:addMessage', -1, {
-        color = {255, 0, 0},
-        multiline = true,
-        args = {'server-veh', veh}
-    })
-
-    -- This event tells all clients to repair the target vehicle, thereby syncing the repair.
-    TriggerClientEvent('vehicleRepair:cfv', -1, veh)
+    -- Triggering fix event for all players, passes in the id of the player's vehicle to repair.
+    TriggerClientEvent('vehicleRepair:client:keigs-repair', -1, playerId)
 
 end)

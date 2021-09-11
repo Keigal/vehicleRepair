@@ -69,20 +69,48 @@ AddEventHandler('vehicleRepair:cfv', function(vehicle)
 
 end)
 
--- Entry point for the finished command will be client side
-RegisterNetEvent('vehicleRepair:keigs-repair')
-AddEventHandler('vehicleRepair:keigs-repair', function()
+-- Server side event to repair a specific vehicle. Called upon by server:keigs-repair
+RegisterNetEvent('vehicleRepair:client:keigs-repair')
+AddEventHandler('vehicleRepair:client:keigs-repair', function(playerId)
 
-    -- Gets player ped object of player who ran command
-    local playerPed = GetPlayerPed(-1)
+    -- Gets player's ped that ran the command
+    local playerPed = GetPlayerPed(playerId)
 
     TriggerEvent('chat:addMessage', -1, {
         color = {255, 0, 0},
         multiline = true,
-        args = {'client-ped', playerPed}
+        args = {'playerPed', playerPed}
     })
 
-    -- Sends playerPed object to a server-side event to sync repair
-    TriggerServerEvent('vehicleRepair:server:keigs-repair', playerPed)
+    -- Get's vehicle that is being repaird
+    local vehicle = GetVehiclePedIsIn(playerPed, true)
+
+    TriggerEvent('chat:addMessage', -1, {
+        color = {255, 0, 0},
+        multiline = true,
+        args = {'vehicle', vehicle}
+    })
+
+    -- Checks if vehicle is on fire, extinguishes if it is.
+    if IsEntityOnFire(vehicle)
+    then
+        -- Event only needs vehicle coords if there is a fire
+        local coords = GetEntityCoords(vehicle)
+        StopFireInRange(coords, 20)
+        StopEntityFire(vehicle)
+    end
+
+    -- Ensures vehicle is driveable
+    SetVehicleUndriveable(vehicle, false)
+
+    -- Sets the vehicle's engine to full health
+    SetVehicleEngineHealth(vehicle, 1000)
+
+    -- Sets vehicle back to full health, however it will not fix a broken engine.
+    SetVehicleFixed(vehicle)
+
+    -- Sets the cosmetics of the vehicle to look fixed
+    SetVehicleDeformationFixed(vehicle)
+
 
 end)
