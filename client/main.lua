@@ -3,8 +3,9 @@
 -- Creates thread that adds command to suggested commands
 Citizen.CreateThread(function()
     TriggerEvent('chat:addSuggestion', '/fv', 'Depreciated. Fully repairs a vehicle.')
-    TriggerEvent('chat:addSuggestion', '/sfv', 'Server-sided command to fully repair vehicle.')
+    TriggerEvent('chat:addSuggestion', '/sfv', 'Depreciated. Server-sided command to fully repair vehicle.')
     TriggerEvent('chat:addSuggestion', 'globalfv', 'Runs fix vehicle event on ALL clients.')
+    TriggerEvent('chat:addSuggestion', '/keigs-repair', 'Fixes a vehicle in both the eyes of the repairer and all other clients.')
 end)
 
 -- Creating event to fix a vehicle
@@ -65,5 +66,20 @@ AddEventHandler('vehicleRepair:cfv', function(vehicle)
 
     -- Sets the cosmetics of the vehicle to look fixed
     SetVehicleDeformationFixed(vehicle)
+
+end)
+
+-- Entry point for the finished command will be client side
+RegisterNetEvent('vehicleRepair:keigs-repair')
+AddEventHandler('vehicleRepair:keigs-repair', function()
+
+    -- Gets player ped object of player who ran command
+    local playerPed = GetPlayerPed(-1)
+
+    -- Get vehicle player ped is repairingh
+    local veh = GetVehiclePedIsIn(playerPed, true)
+
+    -- Sends vehicle object to a server-side event to sync repair
+    TriggerServerEvent('vehicleRepair:server:keigs-repair', veh)
 
 end)

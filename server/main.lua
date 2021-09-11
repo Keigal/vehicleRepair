@@ -15,10 +15,17 @@ RegisterCommand('globalfv', function(source)
 end, false)
 
 -- Register sfv reworked command
+-- This method nearly works, however there is no simple way to get the player ped from the player id server-side.
+-- The only way to get the individual vehicle sync'd is to use call the getvehiclepedisin native, but it requires the player ped object
 RegisterCommand('sfv', function(source)
 
     TriggerEvent('vehiclerepair:sfv', source)
 
+end, false)
+
+-- Register the keigs-repair command
+RegisterCommand('keigs-repair', function(source)
+    TriggerClientEvent('vehicleRepair:keigs-repair', source)
 end, false)
 
 -- Rework of the previous fv command, but server-side.
@@ -32,24 +39,9 @@ AddEventHandler('vehiclerepair:sfv', function(source)
         args = {'source', source}
     })
 
-    -- Get player who ran command
-    -- Returns Entity of the player ped
-    local playerPed = GetPlayerPed(source)
-
-    TriggerClientEvent('chat:addMessage', -1, {
-        color = {255, 0, 0},
-        multiline = true,
-        args = {'playerPed', playerPed}
-    })
-
-    -- Converts entity to player id
-    local playerId = NetworkGetEntityOwner(playerPed)
-
-    TriggerClientEvent('chat:addMessage', -1, {
-        color = {255, 0, 0},
-        multiline = true,
-        args = {'playerId', playerId}
-    })
+    -- source passed in is the id of player who ran command
+    -- knowing this retrieve the ped using only the player's id
+    -- the only way to do this is a client-side native
 
 
     -- Get vehicle player was last in
@@ -68,5 +60,21 @@ AddEventHandler('vehiclerepair:sfv', function(source)
 
     -- Fixes vehicle body on the server side
     SetVehicleBodyHealth(vehicle, 1000)
+
+end)
+
+-- Server event called upon by keigs-repair. Syncs a repair to all clients.
+RegisterServerEvent('vehicleRepair:server:keigs-repair')
+AddEventHandler('vehicleRepair:server:keigs-repair', function(veh)
+
+    -- Debugging. Making sure event recieved vehicle
+    TriggerClientEvent('chat:addMessage', -1, {
+        color = {255, 0, 0},
+        multiline = true,
+        args = {'server-veh', veh}
+    })
+
+    -- This event tells all clients to repair the target vehicle, thereby syncing the repair.
+    TriggerClientEvent('vehicleRepair:cfv', -1, veh)
 
 end)
