@@ -73,7 +73,7 @@ end)
 RegisterNetEvent('vehicleRepair:client:keigs-repair')
 AddEventHandler('vehicleRepair:client:keigs-repair', function(playerId)
 
-    TriggerEvent('chat:addMessage', -1, {
+    TriggerEvent('chat:addMessage', {
         color = {255, 0, 0},
         multiline = true,
         args = {'client-playerId', playerId}
