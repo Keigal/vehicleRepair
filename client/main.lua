@@ -76,10 +76,7 @@ AddEventHandler('vehicleRepair:keigs-repair', function()
     -- Gets player ped object of player who ran command
     local playerPed = GetPlayerPed(-1)
 
-    -- Get vehicle player ped is repairingh
-    local veh = GetVehiclePedIsIn(playerPed, true)
-
-    -- Sends vehicle object to a server-side event to sync repair
-    TriggerServerEvent('vehicleRepair:server:keigs-repair', veh)
+    -- Sends playerPed object to a server-side event to sync repair
+    TriggerServerEvent('vehicleRepair:server:keigs-repair', playerPed)
 
 end)

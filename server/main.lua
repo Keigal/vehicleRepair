@@ -65,7 +65,10 @@ end)
 
 -- Server event called upon by keigs-repair. Syncs a repair to all clients.
 RegisterServerEvent('vehicleRepair:server:keigs-repair')
-AddEventHandler('vehicleRepair:server:keigs-repair', function(veh)
+AddEventHandler('vehicleRepair:server:keigs-repair', function(playerPed)
+
+    -- Gets vehicle object server side
+    local veh = GetVehiclePedIsIn(playerPed, true)
 
     -- Debugging. Making sure event recieved vehicle
     TriggerClientEvent('chat:addMessage', -1, {
