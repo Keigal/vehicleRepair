@@ -53,7 +53,7 @@ AddEventHandler('vehiclerepair:sfv', function(source)
 
 
     -- Get vehicle player was last in
-    local vehicle = GetVehiclePedIsIn(playerPed, true)
+    local vehicle = GetVehiclePedIsIn(playerId, true)
 
     -- Debugging
     TriggerClientEvent('chat:addMessage', -1, {
