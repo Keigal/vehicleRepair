@@ -17,16 +17,23 @@ end, false)
 -- Register sfv reworked command
 RegisterCommand('sfv', function(source)
 
-    TriggerEvent('vehiclerepair:sfv')
+    TriggerEvent('vehiclerepair:sfv', source)
 
 end, false)
 
 -- Rework of the previous fv command, but server-side.
 RegisterServerEvent('vehiclerepair:sfv')
-AddEventHandler('vehiclerepair:sfv', function()
+AddEventHandler('vehiclerepair:sfv', function(source)
 
     -- Get player who ran command
     local playerPed = GetPlayerPed(-1)
+
+    -- Debugging
+    TriggerEvent('chat:addMessage', {
+        color = {255, 0, 0},
+        multiline = true,
+        args = {'me', 'hello world!'}
+    })
 
     -- Get vehicle player was last in
     local vehicle = GetVehiclePedIsIn(playerPed, true)
