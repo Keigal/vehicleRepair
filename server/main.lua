@@ -71,7 +71,7 @@ AddEventHandler('vehicleRepair:server:keigs-repair', function(source)
     TriggerClientEvent('chat:addMessage', -1, {
         color = {255, 0, 0},
         multiline = true,
-        args = {'source', source}
+        args = {'server-source', source}
     })
 
     local playerId = source
