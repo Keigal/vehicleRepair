@@ -32,11 +32,19 @@ AddEventHandler('vehiclerepair:sfv', function(source)
     TriggerClientEvent('chat:addMessage', -1, {
         color = {255, 0, 0},
         multiline = true,
-        args = {'me', 'hello world!'}
+        args = {'me', playerPed}
     })
 
     -- Get vehicle player was last in
     local vehicle = GetVehiclePedIsIn(playerPed, true)
+
+    -- Debugging
+    TriggerClientEvent('chat:addMessage', -1, {
+        color = {255, 0, 0},
+        multiline = true,
+        args = {'me', vehicle}
+    })
+
 
     -- Runs cfv event to fix & sync the vehicle client-side
     TriggerClientEvent('vehicleRepair:cfv', -1, vehicle)
