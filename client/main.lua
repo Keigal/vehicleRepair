@@ -76,7 +76,7 @@ AddEventHandler('vehicleRepair:keigs-repair', function()
     -- Gets player ped object of player who ran command
     local playerPed = GetPlayerPed(-1)
 
-    TriggerClientEvent('chat:addMessage', -1, {
+    TriggerEvent('chat:addMessage', -1, {
         color = {255, 0, 0},
         multiline = true,
         args = {'client-ped', playerPed}
