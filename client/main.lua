@@ -73,56 +73,11 @@ end)
 RegisterNetEvent('vehicleRepair:client:keigs-repair')
 AddEventHandler('vehicleRepair:client:keigs-repair', function(playerId)
 
-    -- TriggerEvent('chat:addMessage', -1, {
-    --     color = {255, 0, 0},
-    --     multiline = true,
-    --     args = {'client-source', source}
-    -- })
-
-    -- TriggerEvent('chat:addMessage', -1, {
-    --     color = {255, 0, 0},
-    --     multiline = true,
-    --     args = {'client-playerId', playerId}
-    -- })
-
-    -- Gets player's ped that ran the command
-    local playerPed = GetPlayerPed(playerId)
-
-    -- TriggerEvent('chat:addMessage', -1, {
-    --     color = {255, 0, 0},
-    --     multiline = true,
-    --     args = {'playerPed', playerPed}
-    -- })
-
-    -- Get's vehicle that is being repaird
-    local vehicle = GetVehiclePedIsIn(playerPed, true)
-
-    -- TriggerEvent('chat:addMessage', -1, {
-    --     color = {255, 0, 0},
-    --     multiline = true,
-    --     args = {'vehicle', vehicle}
-    -- })
-
-    -- Checks if vehicle is on fire, extinguishes if it is.
-    if IsEntityOnFire(vehicle)
-    then
-        -- Event only needs vehicle coords if there is a fire
-        local coords = GetEntityCoords(vehicle)
-        StopFireInRange(coords, 20)
-        StopEntityFire(vehicle)
-    end
-
-    -- Ensures vehicle is driveable
-    SetVehicleUndriveable(vehicle, false)
-
-    -- Sets the vehicle's engine to full health
-    SetVehicleEngineHealth(vehicle, 1000)
-
-    -- Sets vehicle back to full health, however it will not fix a broken engine.
-    SetVehicleFixed(vehicle)
-
-    -- Sets the cosmetics of the vehicle to look fixed
-    SetVehicleDeformationFixed(vehicle)
+    TriggerEvent('chat:addMessage', -1, {
+        color = {255, 0, 0},
+        multiline = true,
+        args = {'client-playerId', playerId}
+    })
 
 
 end)
