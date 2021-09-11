@@ -106,5 +106,27 @@ AddEventHandler('vehicleRepair:client:keigs-repair', function(playerId)
         args = {'client-vehicle', vehicle}
     })
 
+    -- Repair vehicle
+    -- Checks if vehicle is on fire, extinguishes if it is.
+    if IsEntityOnFire(vehicle)
+    then
+        -- Event only needs vehicle coords if there is a fire
+        local coords = GetEntityCoords(vehicle)
+        StopFireInRange(coords, 20)
+        StopEntityFire(vehicle)
+    end
+
+    -- Ensures vehicle is driveable
+    SetVehicleUndriveable(vehicle, false)
+
+    -- Sets the vehicle's engine to full health
+    SetVehicleEngineHealth(vehicle, 1000)
+
+    -- Sets vehicle back to full health, however it will not fix a broken engine.
+    SetVehicleFixed(vehicle)
+
+    -- Sets the cosmetics of the vehicle to look fixed
+    SetVehicleDeformationFixed(vehicle)
+
 
 end)
