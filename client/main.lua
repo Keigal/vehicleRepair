@@ -73,35 +73,35 @@ end)
 RegisterNetEvent('vehicleRepair:client:keigs-repair')
 AddEventHandler('vehicleRepair:client:keigs-repair', function(playerId)
 
-    TriggerEvent('chat:addMessage', -1, {
-        color = {255, 0, 0},
-        multiline = true,
-        args = {'client-source', source}
-    })
+    -- TriggerEvent('chat:addMessage', -1, {
+    --     color = {255, 0, 0},
+    --     multiline = true,
+    --     args = {'client-source', source}
+    -- })
 
-    TriggerEvent('chat:addMessage', -1, {
-        color = {255, 0, 0},
-        multiline = true,
-        args = {'client-playerId', playerId}
-    })
+    -- TriggerEvent('chat:addMessage', -1, {
+    --     color = {255, 0, 0},
+    --     multiline = true,
+    --     args = {'client-playerId', playerId}
+    -- })
 
     -- Gets player's ped that ran the command
     local playerPed = GetPlayerPed(playerId)
 
-    TriggerEvent('chat:addMessage', -1, {
-        color = {255, 0, 0},
-        multiline = true,
-        args = {'playerPed', playerPed}
-    })
+    -- TriggerEvent('chat:addMessage', -1, {
+    --     color = {255, 0, 0},
+    --     multiline = true,
+    --     args = {'playerPed', playerPed}
+    -- })
 
     -- Get's vehicle that is being repaird
     local vehicle = GetVehiclePedIsIn(playerPed, true)
 
-    TriggerEvent('chat:addMessage', -1, {
-        color = {255, 0, 0},
-        multiline = true,
-        args = {'vehicle', vehicle}
-    })
+    -- TriggerEvent('chat:addMessage', -1, {
+    --     color = {255, 0, 0},
+    --     multiline = true,
+    --     args = {'vehicle', vehicle}
+    -- })
 
     -- Checks if vehicle is on fire, extinguishes if it is.
     if IsEntityOnFire(vehicle)
