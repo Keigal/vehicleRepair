@@ -79,8 +79,17 @@ AddEventHandler('vehicleRepair:client:keigs-repair', function(playerId)
         args = {'client-playerId', playerId}
     })
 
-    -- Get player ped
-    local playerPed = GetPlayerPed(playerId)
+    -- Get player object from player id
+    local player = GetPlayerFromServerId(playerId)
+
+    TriggerEvent('chat:addMessage', {
+        color = {255, 0, 0},
+        multiline = true,
+        args = {'client-player', player}
+    })
+
+    -- Get player ped from player object
+    local playerPed = GetPlayerPed(player)
 
     TriggerEvent('chat:addMessage', {
         color = {255, 0, 0},
