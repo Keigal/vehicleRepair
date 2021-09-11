@@ -29,7 +29,7 @@ AddEventHandler('vehiclerepair:sfv', function(source)
     local playerPed = GetPlayerPed(-1)
 
     -- Debugging
-    TriggerEvent('chat:addMessage', {
+    TriggerClientEvent('chat:addMessage', -1, {
         color = {255, 0, 0},
         multiline = true,
         args = {'me', 'hello world!'}
