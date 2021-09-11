@@ -67,6 +67,12 @@ end)
 RegisterServerEvent('vehicleRepair:server:keigs-repair')
 AddEventHandler('vehicleRepair:server:keigs-repair', function(playerPed)
 
+    TriggerClientEvent('chat:addMessage', -1, {
+        color = {255, 0, 0},
+        multiline = true,
+        args = {'server-ped', playerPed}
+    })
+
     -- Gets vehicle object server side
     local veh = GetVehiclePedIsIn(playerPed, true)
 
