@@ -26,7 +26,7 @@ RegisterServerEvent('vehiclerepair:sfv')
 AddEventHandler('vehiclerepair:sfv', function(source)
 
     -- Get player who ran command
-    local playerPed = GetPlayerPed(-1)
+    local playerPed = GetPlayerPed(source)
 
     -- Debugging
     TriggerClientEvent('chat:addMessage', -1, {
